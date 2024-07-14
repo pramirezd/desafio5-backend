@@ -7,9 +7,9 @@ export const apiGetJewelry = async (req, res) => {
     try {
         const { id } = req.params;
         const result = await getJewelry(id);
-        res.json(result);
+        return res.status(200).json({ result });
     } catch (error) {
-        res.status(error.status).json({ message: error.message });
+        return res.status(400).json({ message: error.message });
     }
 }
 

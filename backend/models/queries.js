@@ -74,9 +74,8 @@ const getFilteredJewelries = async ({ precio_min, precio_max, categoria, metal }
 
     let query = 'SELECT * FROM inventario';
     if (filters.length > 0) {
-        filters = filters.join(' AND ');
-        query += ` WHERE ${filters}`;
-    }
+        query += ` WHERE ${filters.join(' AND ')}`;
+    };
 
     const { rows } = await pool.query(query, values);
 
@@ -85,7 +84,7 @@ const getFilteredJewelries = async ({ precio_min, precio_max, categoria, metal }
             status: 404,
             message: 'No se encontraron joyas con los filtros seleccionados',
         };
-    }
+    };
 
     return rows;
 };
